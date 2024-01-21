@@ -12,9 +12,10 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
+        os: [ windows-2019 ]
         arch:
           - amd64
           - amd64_x86
@@ -27,7 +28,6 @@ jobs:
         with:
           toolset: "15.0"
           arch: x86
-          uwp: false
 
       - name: Building
         shell: bash
