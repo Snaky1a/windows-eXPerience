@@ -1,4 +1,4 @@
-name: Build Debug Win32
+name: Build Release Win32
 
 on:
   push:
@@ -13,8 +13,21 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        arch:
+          - amd64
+          - amd64_x86
+          - amd64_arm64
+
     steps:
       - uses: actions/checkout@v3
+
+      - uses: TheMrMilchmann/setup-msvc-dev@v3
+        with:
+          toolset: "14.0"
+          arch: ${{matrix.arch}}
+          uwp: false
 
       - name: Building
         shell: bash
