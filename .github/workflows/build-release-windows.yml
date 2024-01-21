@@ -21,7 +21,7 @@ jobs:
         env:
           CXX: cl.exe
         run: |
-          cd '${github.workspace}/build'
+          mkdir build
           cmake ..
           cmake --build . --config Release
 
