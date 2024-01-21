@@ -17,17 +17,17 @@ jobs:
       matrix:
         os: [ windows-2019 ]
         arch:
-          - amd64
-          - amd64_x86
-          - amd64_arm64
+          - x64
+          - x86
 
     steps:
       - uses: actions/checkout@v3
 
-      - uses: TheMrMilchmann/setup-msvc-dev@v3
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.3.1
         with:
-          toolset: "15.0"
-          arch: x86
+          msbuild-architecture: ${{matrix.arch}}
+          vs-version: '16.10'
 
       - name: Building
         shell: bash
@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -G "Visual Studio 14 2015" -A Win32 ..
+          cmake -G "Visual Studio 16 2019" -A Win32 ..
           cmake --build . --config Release
 
       - name: Upload artifact
