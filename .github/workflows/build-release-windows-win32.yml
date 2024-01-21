@@ -22,12 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.3.1
-        with:
-          msbuild-architecture: ${{matrix.arch}}
-          vs-version: '16.10'
-
       - name: Building
         shell: bash
         env:
