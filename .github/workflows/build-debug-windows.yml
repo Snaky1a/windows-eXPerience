@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Building
+        shell: bash
+        env:
+          CXX: cl.exe
+        run: |
+          cd build
+          cmake ..
+          cmake --build . --config Debug
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "Release"
+          path: '${{github.workspace}}/build/Debug'

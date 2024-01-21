@@ -21,7 +21,6 @@ jobs:
               env:
                   CXX: cl.exe
               run: |
-                  mkdir build
                   cd build
                   cmake ..
                   cmake --build . --config Release
