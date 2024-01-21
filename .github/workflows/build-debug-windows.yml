@@ -21,7 +21,7 @@ jobs:
         env:
           CXX: cl.exe
         run: |
-          cd '${{GITHUB_WORKSPACE}}/build'
+          cd '${github.workspace}/build'
           cmake ..
           cmake --build . --config Debug
 
