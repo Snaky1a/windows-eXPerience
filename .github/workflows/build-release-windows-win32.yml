@@ -25,7 +25,7 @@ jobs:
 
       - uses: TheMrMilchmann/setup-msvc-dev@v3
         with:
-          toolset: "14.0"
+          toolset: "15.0"
           arch: x86
           uwp: false
 
